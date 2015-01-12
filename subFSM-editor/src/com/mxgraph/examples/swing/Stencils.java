@@ -90,6 +90,11 @@ public class Stencils extends JFrame
 
 			mxGraphComponent graphComponent = new mxGraphComponent(graph)
 			{
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = -1001763571153816896L;
+
 				// Sets global image base path
 				public mxInteractiveCanvas createCanvas()
 				{
