@@ -14,9 +14,9 @@ import javax.swing.UIManager;
 
 import org.w3c.dom.Document;
 
+import com.mxgraph.canvas.mxGraphics2DCanvas;
 import com.mxgraph.examples.swing.editor.BasicGraphEditor;
 import com.mxgraph.examples.swing.editor.EditorAboutFrame;
-import com.mxgraph.examples.swing.editor.EditorMenuBar;
 import com.mxgraph.examples.swing.editor.EditorPalette;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.model.mxCell;
@@ -35,6 +35,9 @@ import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxEventSource.mxIEventListener;
 import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraph;
+
+import fr.lusis.tools.subFSM.editor.EditorMenuBar;
+import fr.lusis.tools.subFSM.shapes.Component;
 
 public class Editor extends BasicGraphEditor {
 
@@ -119,20 +122,12 @@ public class Editor extends BasicGraphEditor {
 						"swimlane", 280, 280, "Container");
 		shapesPalette
 				.addTemplate(
-						"Component",
+						"sub-FSM",
 						new ImageIcon(
 								Editor.class
 										.getResource("/fr/lusis/tools/subFSM/images/component_cyan.png")),
-						"component",
-						70, 70, "Component");
-		shapesPalette
-				.addTemplate(
-						"Label",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/rounded.png")),
-						"label;image=/com/mxgraph/examples/swing/images/gear.png",
-						130, 50, "Label");
+						"shape=component;fillColor=#00ffff",
+						100, 60, "sub-FSM");
 		shapesPalette
 				.addTemplate(
 						"Rectangle",
@@ -224,13 +219,13 @@ public class Editor extends BasicGraphEditor {
 								Editor.class
 										.getResource("/com/mxgraph/examples/swing/images/entity.png")),
 						"entity", 100, 100, "");
-		shapesPalette
-				.addEdgeTemplate(
-						"Arrow",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/arrow.png")),
-						"arrow", 120, 120, "");
+//		shapesPalette
+//				.addEdgeTemplate(
+//						"Arrow",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/arrow.png")),
+//						"arrow", 120, 120, "");
 	}
 
 	/**
@@ -251,9 +246,12 @@ public class Editor extends BasicGraphEditor {
 		public CustomGraphComponent(mxGraph graph)
 		{
 			super(graph);
+			
+			// Register custom shape
+			mxGraphics2DCanvas.putShape("component", new Component());
 
 			// Sets switches typically used in an editor
-			setPageVisible(true);
+//			setPageVisible(true);
 			setGridVisible(true);
 			setToolTips(true);
 			getConnectionHandler().setCreateTarget(true);
@@ -261,7 +259,7 @@ public class Editor extends BasicGraphEditor {
 			// Loads the defalt stylesheet from an external file
 			mxCodec codec = new mxCodec();
 			Document doc = mxUtils.loadDocument(Editor.class.getResource(
-					"/com/mxgraph/examples/swing/resources/default-style.xml")
+					"/fr/lusis/tools/subFSM/resources/default-style.xml")
 					.toString());
 			codec.decode(doc.getDocumentElement(), graph.getStylesheet());
 
@@ -321,6 +319,7 @@ public class Editor extends BasicGraphEditor {
 		public CustomGraph()
 		{
 			setAlternateEdgeStyle("edgeStyle=mxEdgeStyle.ElbowConnector;elbow=vertical");
+//			setAlternateEdgeStyle("edgeStyle=mxEdgeStyle.EntityRelation");
 		}
 
 		/**
@@ -444,7 +443,10 @@ public class Editor extends BasicGraphEditor {
 				return edge;
 			}
 
-			return super.createEdge(parent, id, value, source, target, style);
+			String defaultEdgeStyle = "edgeStyle=mxEdgeStyle.EntityRelation";
+			defaultEdgeStyle = "edgeStyle=mxEdgeStyle.ElbowConnector;elbow=vertical";
+			
+			return super.createEdge(parent, id, value, source, target, defaultEdgeStyle);
 		}
 
 	}
