@@ -22,6 +22,8 @@ public class SubFSMGraph extends mxGraph {
 	 * Holds the edge to be used as a template for inserting new edges.
 	 */
 	protected Object edgeTemplate;
+	
+	protected Object vertexTemplate;
 
 	/**
 	 * Custom graph that defines the alternate edge style to be used when
@@ -39,6 +41,16 @@ public class SubFSMGraph extends mxGraph {
 	public void setEdgeTemplate(Object template)
 	{
 		edgeTemplate = template;
+	}
+	
+	public void setVertexTemplate(Object template)
+	{
+		vertexTemplate = template;
+	}
+	
+	public Object getVertexTemplate()
+	{
+		return vertexTemplate;
 	}
 
 	/**
@@ -180,5 +192,5 @@ public class SubFSMGraph extends mxGraph {
 		
 		return super.createEdge(parent, id, value, source, target, defaultEdgeStyle);
 	}
-
+	
 }
