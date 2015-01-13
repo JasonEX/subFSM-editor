@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.swing.AbstractAction;
 
-import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.util.mxGraphActions;
 import com.mxgraph.view.mxGraph;
@@ -103,7 +103,7 @@ public class EditorActions extends com.mxgraph.examples.swing.editor.EditorActio
 				{
 					String value = "";
 					for (int i = 0; i < cells.length; i++)
-						if (((mxCell) cells[i]).isVertex())
+						if (((mxICell) cells[i]).isVertex())
 						{
 							switch (type) {
 							case ENTRY_NODE:
