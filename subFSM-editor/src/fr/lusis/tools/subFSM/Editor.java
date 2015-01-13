@@ -342,7 +342,9 @@ public class Editor extends BasicGraphEditor {
 		mxConstants.W3C_SHADOWCOLOR = "#D3D3D3";
 
 		Editor editor = new Editor();
-		editor.createFrame(new EditorMenuBar(editor)).setVisible(true);
+		JFrame frame = editor.createFrame(new EditorMenuBar(editor));
+		frame.setLocationByPlatform(true);
+		frame.setVisible(true);
 	}
 
 }

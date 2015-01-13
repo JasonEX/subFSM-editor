@@ -29,42 +29,6 @@ import com.mxgraph.analysis.mxGraphProperties.GraphType;
 import com.mxgraph.costfunction.mxCostFunction;
 import com.mxgraph.examples.swing.editor.BasicGraphEditor;
 import com.mxgraph.examples.swing.editor.GraphConfigDialog;
-import com.mxgraph.examples.swing.editor.EditorActions.AlignCellsAction;
-import com.mxgraph.examples.swing.editor.EditorActions.AutosizeAction;
-import com.mxgraph.examples.swing.editor.EditorActions.BackgroundAction;
-import com.mxgraph.examples.swing.editor.EditorActions.BackgroundImageAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ColorAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ExitAction;
-import com.mxgraph.examples.swing.editor.EditorActions.GridColorAction;
-import com.mxgraph.examples.swing.editor.EditorActions.GridStyleAction;
-import com.mxgraph.examples.swing.editor.EditorActions.HistoryAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ImportAction;
-import com.mxgraph.examples.swing.editor.EditorActions.KeyValueAction;
-import com.mxgraph.examples.swing.editor.EditorActions.NewAction;
-import com.mxgraph.examples.swing.editor.EditorActions.OpenAction;
-import com.mxgraph.examples.swing.editor.EditorActions.PageBackgroundAction;
-import com.mxgraph.examples.swing.editor.EditorActions.PageSetupAction;
-import com.mxgraph.examples.swing.editor.EditorActions.PrintAction;
-import com.mxgraph.examples.swing.editor.EditorActions.PromptPropertyAction;
-import com.mxgraph.examples.swing.editor.EditorActions.PromptValueAction;
-import com.mxgraph.examples.swing.editor.EditorActions.SaveAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ScaleAction;
-import com.mxgraph.examples.swing.editor.EditorActions.SelectShortestPathAction;
-import com.mxgraph.examples.swing.editor.EditorActions.SelectSpanningTreeAction;
-import com.mxgraph.examples.swing.editor.EditorActions.SetLabelPositionAction;
-import com.mxgraph.examples.swing.editor.EditorActions.SetStyleAction;
-import com.mxgraph.examples.swing.editor.EditorActions.StyleAction;
-import com.mxgraph.examples.swing.editor.EditorActions.StylesheetAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleConnectModeAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleCreateTargetItem;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleDirtyAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleGridItem;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleOutlineItem;
-import com.mxgraph.examples.swing.editor.EditorActions.TogglePropertyItem;
-import com.mxgraph.examples.swing.editor.EditorActions.ToggleRulersItem;
-import com.mxgraph.examples.swing.editor.EditorActions.WarningAction;
-import com.mxgraph.examples.swing.editor.EditorActions.ZoomPolicyAction;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.util.mxGraphActions;
@@ -73,6 +37,8 @@ import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxResources;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
+
+import fr.lusis.tools.subFSM.editor.EditorActions.*;
 
 public class EditorMenuBar extends JMenuBar {
 
@@ -651,7 +617,7 @@ public class EditorMenuBar extends JMenuBar {
 		submenu.addSeparator();
 
 		submenu.add(editor.bind(mxResources.get("orthogonal"), new ToggleAction(mxConstants.STYLE_ORTHOGONAL)));
-		submenu.add(editor.bind(mxResources.get("dashed"), new ToggleAction(mxConstants.STYLE_DASHED)));
+//		submenu.add(editor.bind(mxResources.get("dashed"), new ToggleAction(mxConstants.STYLE_DASHED)));
 
 		submenu.addSeparator();
 
@@ -678,49 +644,49 @@ public class EditorMenuBar extends JMenuBar {
 
 		menu.addSeparator();
 
-		submenu = (JMenu) menu.add(new JMenu(mxResources.get("linestart")));
+//		submenu = (JMenu) menu.add(new JMenu(mxResources.get("linestart")));
+//
+//		submenu.add(editor.bind(mxResources.get("open"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_OPEN),
+//				"/com/mxgraph/examples/swing/images/open_start.gif"));
+//		submenu.add(editor.bind(mxResources.get("classic"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_CLASSIC),
+//				"/com/mxgraph/examples/swing/images/classic_start.gif"));
+//		submenu.add(editor.bind(mxResources.get("block"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_BLOCK),
+//				"/com/mxgraph/examples/swing/images/block_start.gif"));
+//
+//		submenu.addSeparator();
+//
+//		submenu.add(editor.bind(mxResources.get("diamond"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_DIAMOND),
+//				"/com/mxgraph/examples/swing/images/diamond_start.gif"));
+//		submenu.add(editor.bind(mxResources.get("oval"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_OVAL),
+//				"/com/mxgraph/examples/swing/images/oval_start.gif"));
+//
+//		submenu.addSeparator();
+//
+//		submenu.add(editor.bind(mxResources.get("none"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.NONE)));
+//		submenu.add(editor.bind(mxResources.get("size"), new PromptValueAction(mxConstants.STYLE_STARTSIZE, "Linestart Size")));
 
-		submenu.add(editor.bind(mxResources.get("open"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_OPEN),
-				"/com/mxgraph/examples/swing/images/open_start.gif"));
-		submenu.add(editor.bind(mxResources.get("classic"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_CLASSIC),
-				"/com/mxgraph/examples/swing/images/classic_start.gif"));
-		submenu.add(editor.bind(mxResources.get("block"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_BLOCK),
-				"/com/mxgraph/examples/swing/images/block_start.gif"));
-
-		submenu.addSeparator();
-
-		submenu.add(editor.bind(mxResources.get("diamond"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_DIAMOND),
-				"/com/mxgraph/examples/swing/images/diamond_start.gif"));
-		submenu.add(editor.bind(mxResources.get("oval"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.ARROW_OVAL),
-				"/com/mxgraph/examples/swing/images/oval_start.gif"));
-
-		submenu.addSeparator();
-
-		submenu.add(editor.bind(mxResources.get("none"), new KeyValueAction(mxConstants.STYLE_STARTARROW, mxConstants.NONE)));
-		submenu.add(editor.bind(mxResources.get("size"), new PromptValueAction(mxConstants.STYLE_STARTSIZE, "Linestart Size")));
-
-		submenu = (JMenu) menu.add(new JMenu(mxResources.get("lineend")));
-
-		submenu.add(editor.bind(mxResources.get("open"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_OPEN),
-				"/com/mxgraph/examples/swing/images/open_end.gif"));
-		submenu.add(editor.bind(mxResources.get("classic"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_CLASSIC),
-				"/com/mxgraph/examples/swing/images/classic_end.gif"));
-		submenu.add(editor.bind(mxResources.get("block"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_BLOCK),
-				"/com/mxgraph/examples/swing/images/block_end.gif"));
-
-		submenu.addSeparator();
-
-		submenu.add(editor.bind(mxResources.get("diamond"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_DIAMOND),
-				"/com/mxgraph/examples/swing/images/diamond_end.gif"));
-		submenu.add(editor.bind(mxResources.get("oval"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_OVAL),
-				"/com/mxgraph/examples/swing/images/oval_end.gif"));
-
-		submenu.addSeparator();
-
-		submenu.add(editor.bind(mxResources.get("none"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.NONE)));
-		submenu.add(editor.bind(mxResources.get("size"), new PromptValueAction(mxConstants.STYLE_ENDSIZE, "Lineend Size")));
-
-		menu.addSeparator();
+//		submenu = (JMenu) menu.add(new JMenu(mxResources.get("lineend")));
+//
+//		submenu.add(editor.bind(mxResources.get("open"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_OPEN),
+//				"/com/mxgraph/examples/swing/images/open_end.gif"));
+//		submenu.add(editor.bind(mxResources.get("classic"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_CLASSIC),
+//				"/com/mxgraph/examples/swing/images/classic_end.gif"));
+//		submenu.add(editor.bind(mxResources.get("block"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_BLOCK),
+//				"/com/mxgraph/examples/swing/images/block_end.gif"));
+//
+//		submenu.addSeparator();
+//
+//		submenu.add(editor.bind(mxResources.get("diamond"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_DIAMOND),
+//				"/com/mxgraph/examples/swing/images/diamond_end.gif"));
+//		submenu.add(editor.bind(mxResources.get("oval"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.ARROW_OVAL),
+//				"/com/mxgraph/examples/swing/images/oval_end.gif"));
+//
+//		submenu.addSeparator();
+//
+//		submenu.add(editor.bind(mxResources.get("none"), new KeyValueAction(mxConstants.STYLE_ENDARROW, mxConstants.NONE)));
+//		submenu.add(editor.bind(mxResources.get("size"), new PromptValueAction(mxConstants.STYLE_ENDSIZE, "Lineend Size")));
+//
+//		menu.addSeparator();
 
 		submenu = (JMenu) menu.add(new JMenu(mxResources.get("alignment")));
 
@@ -776,7 +742,7 @@ public class EditorMenuBar extends JMenuBar {
 
 		menu.addSeparator();
 
-		menu.add(editor.bind(mxResources.get("rounded"), new ToggleAction(mxConstants.STYLE_ROUNDED)));
+//		menu.add(editor.bind(mxResources.get("rounded"), new ToggleAction(mxConstants.STYLE_ROUNDED)));
 
 		menu.add(editor.bind(mxResources.get("style"), new StyleAction()));
 	}

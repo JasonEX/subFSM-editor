@@ -12,7 +12,6 @@ import javax.swing.TransferHandler;
 
 import com.mxgraph.examples.swing.editor.BasicGraphEditor;
 import com.mxgraph.examples.swing.editor.EditorMenuBar;
-import com.mxgraph.examples.swing.editor.EditorActions.*;
 import com.mxgraph.swing.util.mxGraphActions;
 import com.mxgraph.util.mxResources;
 
