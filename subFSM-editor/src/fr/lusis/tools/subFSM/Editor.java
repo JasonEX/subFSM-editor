@@ -2,6 +2,7 @@ package fr.lusis.tools.subFSM;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.text.NumberFormat;
 import java.util.Iterator;
@@ -37,6 +38,7 @@ import com.mxgraph.view.mxCellState;
 import com.mxgraph.view.mxGraph;
 
 import fr.lusis.tools.subFSM.editor.EditorMenuBar;
+import fr.lusis.tools.subFSM.editor.EditorPopupMenu;
 import fr.lusis.tools.subFSM.shapes.Component;
 
 public class Editor extends BasicGraphEditor {
@@ -113,91 +115,80 @@ public class Editor extends BasicGraphEditor {
 		});
 
 		// Adds some template cells for dropping into the graph
-		shapesPalette
-				.addTemplate(
-						"Container",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/swimlane.png")),
-						"swimlane", 280, 280, "Container");
+//		shapesPalette
+//				.addTemplate(
+//						"Container",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/swimlane.png")),
+//						"swimlane", 280, 280, "Container");
 		shapesPalette
 				.addTemplate(
 						"sub-FSM",
 						new ImageIcon(
 								Editor.class
 										.getResource("/fr/lusis/tools/subFSM/images/component_cyan.png")),
-						"shape=component;fillColor=#00ffff",
+//						"shape=component;fillColor=#00ffff",
+						"subFSM",
 						100, 60, "sub-FSM");
+//		shapesPalette
+//				.addTemplate(
+//						"Rounded Rectangle",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/rounded.png")),
+//						"rounded=1", 160, 120, "");
 		shapesPalette
 				.addTemplate(
-						"Rectangle",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/rectangle.png")),
-						null, 160, 120, "");
-		shapesPalette
-				.addTemplate(
-						"Rounded Rectangle",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/rounded.png")),
-						"rounded=1", 160, 120, "");
-		shapesPalette
-				.addTemplate(
-						"Double Rectangle",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/doublerectangle.png")),
-						"rectangle;shape=doubleRectangle", 160, 120, "");
-		shapesPalette
-				.addTemplate(
-						"Ellipse",
+						"Condition node",
 						new ImageIcon(
 								Editor.class
 										.getResource("/com/mxgraph/examples/swing/images/ellipse.png")),
-						"ellipse", 160, 160, "");
+//						"ellipse", 100, 60, "");
+						"conditionNode", 100, 60, "");
 		shapesPalette
 				.addTemplate(
-						"Double Ellipse",
+						"Event node",
 						new ImageIcon(
 								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/doubleellipse.png")),
-						"ellipse;shape=doubleEllipse", 160, 160, "");
-		shapesPalette
-				.addTemplate(
-						"Triangle",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/triangle.png")),
-						"triangle", 120, 160, "");
-		shapesPalette
-				.addTemplate(
-						"Rhombus",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/rhombus.png")),
-						"rhombus", 160, 160, "");
-		shapesPalette
-				.addTemplate(
-						"Horizontal Line",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/hline.png")),
-						"line", 160, 10, "");
-		shapesPalette
-				.addTemplate(
-						"Hexagon",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/hexagon.png")),
-						"shape=hexagon", 160, 120, "");
-		shapesPalette
-				.addEdgeTemplate(
-						"Straight",
-						new ImageIcon(
-								Editor.class
-										.getResource("/com/mxgraph/examples/swing/images/straight.png")),
-						"straight", 120, 120, "");
+								.getResource("/fr/lusis/tools/subFSM/images/rectangle_yellow.png")),
+//						"fillColor=#ffff00", 100, 60, "");
+						"eventNode", 100, 60, "");
+//		shapesPalette
+//				.addTemplate(
+//						"Triangle",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/triangle.png")),
+//						"triangle", 120, 160, "");
+//		shapesPalette
+//				.addTemplate(
+//						"Rhombus",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/rhombus.png")),
+//						"rhombus", 160, 160, "");
+//		shapesPalette
+//				.addTemplate(
+//						"Horizontal Line",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/hline.png")),
+//						"line", 160, 10, "");
+//		shapesPalette
+//				.addTemplate(
+//						"Hexagon",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/hexagon.png")),
+//						"shape=hexagon", 160, 120, "");
+//		shapesPalette
+//				.addEdgeTemplate(
+//						"Straight",
+//						new ImageIcon(
+//								Editor.class
+//										.getResource("/com/mxgraph/examples/swing/images/straight.png")),
+//						"straight", 120, 120, "");
 		shapesPalette
 				.addEdgeTemplate(
 						"Horizontal Connector",
@@ -454,6 +445,7 @@ public class Editor extends BasicGraphEditor {
 	/**
 	 * 
 	 */
+	@Override
 	public void about()
 	{
 		JFrame frame = (JFrame) SwingUtilities.windowForComponent(this);
@@ -471,6 +463,17 @@ public class Editor extends BasicGraphEditor {
 			// Shows the modal dialog and waits
 			about.setVisible(true);
 		}
+	}
+	
+	@Override
+	protected void showGraphPopupMenu(MouseEvent e)
+	{
+		Point pt = SwingUtilities.convertPoint(e.getComponent(), e.getPoint(),
+				graphComponent);
+		EditorPopupMenu menu = new EditorPopupMenu(Editor.this);
+		menu.show(graphComponent, pt.x, pt.y);
+
+		e.consume();
 	}
 
 	/**

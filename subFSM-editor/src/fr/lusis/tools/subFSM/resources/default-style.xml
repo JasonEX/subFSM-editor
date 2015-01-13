@@ -104,4 +104,17 @@
 	<add as="rhombusImage" extend="image">
 		<add as="perimeter" value="rhombusPerimeter"/>
 	</add>
+	<add as="subFSM">
+	    <add as="shape" value="component"/>
+	    <add as="fillColor" value="#00ffff"/>
+	    <add as="defaultStyle" value="subFSM"/>
+	</add>
+	<add as="conditionNode" extend="ellipse">
+	    <add as="fillColor" value="#ffffff"/>
+	    <add as="defaultStyle" value="conditionNode"/>
+	</add>
+	<add as="eventNode">
+	    <add as="fillColor" value="ffff00"/>
+	    <add as="defaultStyle" value="eventNode"/>
+	</add>
 </mxStylesheet>
